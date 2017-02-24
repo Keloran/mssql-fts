@@ -18,8 +18,10 @@ EXPOSE 1433
 
 ENV XDG_RUNTIME_DIR=/run/systemd/container
 
+ENV SA_PASSWORD=Pa55word
+
 RUN echo "" > /opt/mssql/lib/mssql-conf/startservice.sh
 
-RUN echo "Yes" | /opt/mssql/bin/mssql-conf setup
+RUN /opt/mssql/bin/mssql-conf setup accept-eula
 
 CMD /opt/mssql/bin/sqlservr
