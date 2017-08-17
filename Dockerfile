@@ -21,7 +21,9 @@ ENV XDG_RUNTIME_DIR=/run/systemd/container
 ENV SA_PASSWORD=Pa55word
 
 RUN echo "" > /opt/mssql/lib/mssql-conf/startservice.sh
+RUN echo '#!/usr/bin/env bash' > /opt/mssql/lib/mssql-conf/checkrunninginstance.sh
+RUN /opt/mssql/lib/mssql-conf/checkinstall.sh
+RUN echo "[EULA]" > /var/opt/mssql/mssql.conf
+RUN echo "accepteula = Y" >> /var/opt/mssql/mssql.conf
 
-RUN /opt/mssql/bin/mssql-conf setup accept-eula
-
-CMD /opt/mssql/bin/sqlservr
+CMD /opt/mssql/lib/mssql-conf/invokesqlservr.sh
