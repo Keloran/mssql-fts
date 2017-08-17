@@ -19,6 +19,7 @@ EXPOSE 1433
 ENV XDG_RUNTIME_DIR=/run/systemd/container
 
 ENV SA_PASSWORD=Pa55word
+ENV MSSQL_PID=developer
 
 RUN echo "" > /opt/mssql/lib/mssql-conf/startservice.sh
 RUN echo '#!/usr/bin/env bash' > /opt/mssql/lib/mssql-conf/checkrunninginstance.sh
